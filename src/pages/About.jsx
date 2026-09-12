@@ -13,21 +13,30 @@ function About() {
   const bio = `
 ## G'Day / Hello I'm William Liu
 
-Living in Gadigal Country / Sydney, Australia.
+📍 Living in Gadigal Country / Sydney, Australia.
 
-I am a Frontend Software Developer and Digital Systems Specialist with background in Computer Science and Media Arts.
+I am a Frontend Engineer, Graphic Designer and Photographer with background in Computer Science and Media Arts. 
+I bridge the gap between techology and art & design. I build modern, responsive, and user-friendly web applications.
 
-I bridge the gap between complex backend logic and refined visual aesthetics. Whether I’m building robust full-stack web applications with React, Node.js, and TypeScript, or managing large-scale digital assets and databases, I focus on delivering clean code, optimal performance, and accessible user experiences.
+I specialize in frontend development (React, Next.js, TypeScript) and web accessibility (WCAG), backed by hands-on experience in database management.
 
-Let’s build something seamless.
+Beyond coding, I wear a few other creative hats:
 
-###### Coding Skills
+- 📷 Visual & Media: Artwork documentation, event photography, and digital collection managing and archiving for over 4000 assets
+- 🎨 Design & Content: Social media marketing content, multimedia design, and graphic design where I applied on student societies and student community projects.
 
-HTML / CSS / Javascript / ReactJS / Python / SQL / Node.js / TypeScript / Git / / Firebase
+I’m always keen to chat about creative tech, digital design, and innovative projects.
 
-###### Creative Skills
+Open to opportunities in Frontend Engineering, Software Development, Interaction Design, Multimedia Design and Photography.
 
-Photography / Video recording / Photoshop / Illustrator / InDesign / Premiere Pro / After Effects / Figma / Fusion 360 / Photo Editing / UI/UX Design
+Let’s connect and build something seamless!
+
+#### Skills
+
+- **Frontend Coding**: HTML / CSS / Javascript / ReactJS / TypeScript / TailwindCSS
+- **Backend Coding**: Python / SQL / Node.js / Firebase
+- **Design**: Photoshop / Illustrator / InDesign / Figma / Fusion 360 / Photo Editing / UI UX Design
+- **Photos and Videos**: Photography / Video recording / Premiere Pro / After Effects
 
   `;
 
@@ -41,49 +50,13 @@ Photography / Video recording / Photoshop / Illustrator / InDesign / Premiere Pr
                 <MarkdownContent>{bio}</MarkdownContent>
               </div>
               <div className="mb-6">
-                <h5 className="text-lg font-semibold mb-2">Let's Connect</h5>
-                <p className="flex items-center mb-2">
-
-                  <SocialButton Icon={<FaInstagram />} />
-
-                  <i className="fa fa-lg fa-instagram text-pink-500"></i>
-                  <a
-                    href="https://www.instagram.com/liutkwilliam"
-                    className="ml-2 text-blue-500 hover:underline"
-                    target="_blank" rel="noopener noreferrer"
-                  >
-                    Instagram (Mainly photography)
-                  </a>
-                </p>
-                <p className="flex items-center mb-2">
-                  <SocialButton Icon={<MdOutlineEmail />} />
-                  <a
-                    href="mailto:liutk.william@gmail.com"
-                    className="ml-2 text-blue-500 hover:underline"
-                  >
-                    liutk.william (@) gmail.com
-                  </a>
-                </p>
-                <p className="flex items-center mb-2">
-                  <SocialButton Icon={<FaLinkedin />} />
-                  <a
-                    href="https://www.linkedin.com/in/liutkwilliam/"
-                    className="ml-2 text-blue-500 hover:underline"
-                    target="_blank" rel="noopener noreferrer"
-                  >
-                    Connect Me on LinkedIn
-                  </a>
-                </p>
-                <p className="flex items-center">
-                  <SocialButton Icon={<FaGithub />} />
-                  <a
-                    href="https://www.github.com/liutkwilliam/"
-                    className="ml-2 text-blue-500 hover:underline"
-                    target="_blank" rel="noopener noreferrer"
-                  >
-                    GitHub
-                  </a>
-                </p>
+                <h4 className="mb-2 mt-6 text-sm font-bold uppercase tracking-widest text-primary">Let's Connect</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                  <SocialButton Icon={<FaInstagram />} href="https://www.instagram.com/liutkwilliam" name="Instagram" />
+                  <SocialButton Icon={<MdOutlineEmail />} href="mailto:liutk.william@gmail.com" name="liutk.william@gmail.com" />
+                  <SocialButton Icon={<FaLinkedin />} href="https://www.linkedin.com/in/liutkwilliam/" name="LinkedIn" />
+                  <SocialButton Icon={<FaGithub />} href="https://www.github.com/liutkwilliam/" name="GitHub" />
+                </div>
               </div>
             </div>
           </div>
