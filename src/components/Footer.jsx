@@ -1,7 +1,6 @@
-import React from 'react'
 import Logo from './Logo'
 import { MdOutlineEmail } from "react-icons/md";
-import { FaInstagram, FaLinkedin } from "react-icons/fa";
+import { FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa";
 import SocialButton from './SocialButton';
 
 function Footer() {
@@ -16,9 +15,10 @@ function Footer() {
                         <span className="block md:inline-flex py-2">@ {new Date().getFullYear()}, William - Tsz Kin LIU</span>
                     </div>
                     <div className="w-full md:w-auto text-center md:text-right py-2 flex justify-center md:justify-end space-x-4">
-                        <SocialButton href="mailto:liutk.william@gmail.com" Icon={<MdOutlineEmail />} ariaLabel="Email William" />
-                        <SocialButton href="https://www.instagram.com/liutk.william/" Icon={<FaInstagram />} ariaLabel="William Liu on Instagram" />
-                        <SocialButton href="https://www.linkedin.com/in/liutkwilliam/" Icon={<FaLinkedin />} ariaLabel="William Liu on LinkedIn" />
+                        <SocialButton href="mailto:liutk.william@gmail.com" icon={<MdOutlineEmail />} ariaLabel="Email William" />
+                        <SocialButton href="https://www.instagram.com/liutk.william/" icon={<FaInstagram />} ariaLabel="William Liu on Instagram" />
+                        <SocialButton href="https://www.linkedin.com/in/liutkwilliam/" icon={<FaLinkedin />} ariaLabel="William Liu on LinkedIn" />
+                        <SocialButton href="https://www.github.io/liutkwilliam/" icon={<FaGithub />} ariaLabel="William Liu on GitHub" />
                     </div>
                 </footer>
             </div>

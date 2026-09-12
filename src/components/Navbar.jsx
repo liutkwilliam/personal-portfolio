@@ -8,8 +8,8 @@ function NavBar() {
   const NavList = [
     { title: "Home", href: "/" },
     { title: "About", href: "/about" },
-    { title: "Developer", href: "/developer" },
-    { title: "Portfolio", href: "/portfolio" },
+    { title: "Developer Portfolio", href: "/developer" },
+    { title: "Design Portflio", href: "/portfolio" },
   ];
 
   const isActive = (href) =>

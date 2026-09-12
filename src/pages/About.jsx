@@ -52,10 +52,10 @@ Let’s connect and build something seamless!
               <div className="mb-6">
                 <h4 className="mb-2 mt-6 text-sm font-bold uppercase tracking-widest text-primary">Let's Connect</h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                  <SocialButton Icon={<FaInstagram />} href="https://www.instagram.com/liutkwilliam" name="Instagram" />
-                  <SocialButton Icon={<MdOutlineEmail />} href="mailto:liutk.william@gmail.com" name="liutk.william@gmail.com" />
-                  <SocialButton Icon={<FaLinkedin />} href="https://www.linkedin.com/in/liutkwilliam/" name="LinkedIn" />
-                  <SocialButton Icon={<FaGithub />} href="https://www.github.com/liutkwilliam/" name="GitHub" />
+                  <SocialButton icon={<FaInstagram />} href="https://www.instagram.com/liutkwilliam" name="Instagram" />
+                  <SocialButton icon={<MdOutlineEmail />} href="mailto:liutk.william@gmail.com" name="liutk.william@gmail.com" />
+                  <SocialButton icon={<FaLinkedin />} href="https://www.linkedin.com/in/liutkwilliam/" name="LinkedIn" />
+                  <SocialButton icon={<FaGithub />} href="https://www.github.com/liutkwilliam/" name="GitHub" />
                 </div>
               </div>
             </div>
