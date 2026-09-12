@@ -19,8 +19,8 @@ export default function AdminLayout() {
     const AdminNavMenu = AdminNavList.map((item) => {
         const active = isActive(item.href);
         const className = [
-            "rounded-full px-3 py-2 text-sm font-medium hover:bg-blue-50 hover:text-blue-600",
-            active ? "bg-blue-50 text-blue-600" : "text-slate-700",
+            "rounded-full px-3 py-2 text-sm font-medium hover:bg-blue-50 hover:text-primary",
+            active ? "bg-blue-50 text-primary" : "text-slate-700",
         ].join(" ");
 
         return (

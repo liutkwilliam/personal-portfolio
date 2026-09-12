@@ -17,7 +17,7 @@ export function Dropdown({ label, value, onChange, children }) {
     <>
       <div className="flex flex-col gap-1">
         <Label label={label} />
-        <select name="category" value={value} onChange={onChange} className="mb-2 w-full rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500  px-2 py-2">
+        <select name="category" value={value} onChange={onChange} className="mb-2 w-full rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary px-2 py-2">
           {children}
         </select>
       </div>
@@ -32,7 +32,7 @@ export function Textarea({ label, ...props }) {
         <Label label={label} />
         <textarea
           placeholder="Content (Markdown supported)"
-          className="min-h-50 rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="min-h-50 rounded-md border border-gray-300 px-3 py-2 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary"
           {...props}
         />
       </div>
@@ -47,7 +47,7 @@ export function Inputs({ label, ...props }) {
       <div className="flex flex-col gap-1">
         <Label label={label} />
         <input
-          className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
           {...props}
         />
       </div>

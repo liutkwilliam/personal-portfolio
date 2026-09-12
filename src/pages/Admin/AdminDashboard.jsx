@@ -560,7 +560,7 @@ function AdminDashboard() {
                         type="button"
                         onClick={() => selectExistingCover(image)}
                         disabled={uploading || isSelected}
-                        className="rounded border border-slate-200 bg-white p-2 text-left shadow-sm transition hover:border-blue-400 disabled:cursor-not-allowed disabled:opacity-60"
+                        className="rounded border border-slate-200 bg-white p-2 text-left shadow-sm transition hover:border-primary disabled:cursor-not-allowed disabled:opacity-60"
                       >
                         <img src={image.url} alt={image.name} className="mb-2 aspect-square w-full rounded object-cover" />
                         <span className="block truncate text-xs text-slate-700">{isSelected ? 'Selected' : image.name}</span>
@@ -612,7 +612,7 @@ function AdminDashboard() {
                         type="button"
                         onClick={() => addExistingPhoto(image)}
                         disabled={uploading || isSelected}
-                        className="rounded border border-slate-200 bg-white p-2 text-left shadow-sm transition hover:border-blue-400 disabled:cursor-not-allowed disabled:opacity-60"
+                        className="rounded border border-slate-200 bg-white p-2 text-left shadow-sm transition hover:border-primary disabled:cursor-not-allowed disabled:opacity-60"
                       >
                         <img src={image.url} alt={image.name} className="mb-2 aspect-square w-full rounded object-cover" />
                         <span className="block truncate text-xs text-slate-700">{isSelected ? 'Selected' : image.name}</span>
@@ -645,7 +645,7 @@ function AdminDashboard() {
             <Button
               type="submit"
               disabled={isSaving}
-              className={`text-white transition ${editId ? 'bg-blue-600 hover:bg-blue-700' : 'bg-green-600 hover:bg-green-700'
+              className={`text-white transition ${editId ? 'bg-primary hover:bg-blue-700' : 'bg-green-600 hover:bg-green-700'
                 }`}
             >
               {isSaving ? 'Saving...' : editId ? 'Update Item' : 'Add Item'}

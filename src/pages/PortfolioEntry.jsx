@@ -84,7 +84,7 @@ function PortfolioEntry({ type = 'portfolio' }) {
     return (
       <main className="mx-auto max-w-3xl px-4 py-24 text-center">
         <h1 className="text-4xl font-bold text-slate-950">Project not found</h1>
-        <Link className="mt-6 inline-block font-semibold text-blue-600" to={backMap[type]}>
+        <Link className="mt-6 inline-block font-semibold text-primary" to={backMap[type]}>
           Back to {labelMap[type]}
         </Link>
       </main>
@@ -104,7 +104,7 @@ function PortfolioEntry({ type = 'portfolio' }) {
           />
         )}
         <div className="relative z-10 mx-auto max-w-4xl px-4 py-24">
-          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.35em] text-blue-200">
+          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.35em] text-primary">
             {labelMap[type]}
           </p>
           <h1 className="text-4xl font-black tracking-tight md:text-6xl">{item.title}</h1>
@@ -118,7 +118,7 @@ function PortfolioEntry({ type = 'portfolio' }) {
       </section>
 
       <main className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-        <Link className="mb-8 inline-block font-semibold text-blue-600 hover:text-blue-800" to={backMap[type]}>
+        <Link className="mb-8 inline-block font-semibold text-primary hover:text-blue-800" to={backMap[type]}>
           {'<'} Back to {labelMap[type]}
         </Link>
         <article className="mx-auto max-w-3xl">

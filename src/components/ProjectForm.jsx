@@ -454,7 +454,7 @@ export default function ProjectForm({ projectId, initialProject = null, mode = '
                 ))}
             </select>
             {categoryPath && (
-                <p className="mb-2 rounded bg-blue-50 px-3 py-2 text-sm text-blue-700">
+                <p className="mb-2 rounded bg-blue-50 px-3 py-2 text-sm text-primary">
                     This project will appear under {categoryPath}.
                 </p>
             )}
@@ -491,7 +491,7 @@ export default function ProjectForm({ projectId, initialProject = null, mode = '
                                     type="button"
                                     onClick={() => selectExistingCover(image)}
                                     disabled={uploading || isSelected}
-                                    className="rounded border border-slate-200 bg-white p-2 text-left shadow-sm transition hover:border-blue-400 disabled:cursor-not-allowed disabled:opacity-60"
+                                    className="rounded border border-slate-200 bg-white p-2 text-left shadow-sm transition hover:border-primary disabled:cursor-not-allowed disabled:opacity-60"
                                 >
                                     <img src={image.url} alt={image.name} className="mb-2 aspect-square w-full rounded object-cover" />
                                     <span className="block truncate text-xs text-slate-700">{isSelected ? 'Selected' : image.name}</span>
@@ -541,7 +541,7 @@ export default function ProjectForm({ projectId, initialProject = null, mode = '
                                     type="button"
                                     onClick={() => addExistingPhoto(image)}
                                     disabled={uploading || isSelected}
-                                    className="rounded border border-slate-200 bg-white p-2 text-left shadow-sm transition hover:border-blue-400 disabled:cursor-not-allowed disabled:opacity-60"
+                                    className="rounded border border-slate-200 bg-white p-2 text-left shadow-sm transition hover:border-primary disabled:cursor-not-allowed disabled:opacity-60"
                                 >
                                     <img src={image.url} alt={image.name} className="mb-2 aspect-square w-full rounded object-cover" />
                                     <span className="block truncate text-xs text-slate-700">{isSelected ? 'Selected' : image.name}</span>
