@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@theme {
+    --color-primary: #258dc7;
+}
+
 .resp-container {
     position: relative;
     overflow: hidden;
