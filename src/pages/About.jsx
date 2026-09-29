@@ -43,21 +43,17 @@ Let’s connect and build something seamless!
   return (
     <>
       <div className="flex items-center bg-white">
-        <div className="container mx-auto px-3">
-          <div className="flex justify-center items-center">
-            <div className="w-full md:w-4/5 lg:w-1/2">
-              <div className="mb-8">
-                <MarkdownContent>{bio}</MarkdownContent>
-              </div>
-              <div className="mb-6">
-                <h4 className="mb-2 mt-6 text-sm font-bold uppercase tracking-widest text-primary">Let's Connect</h4>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                  <SocialButton icon={<FaInstagram />} href="https://www.instagram.com/liutkwilliam" name="Instagram" />
-                  <SocialButton icon={<MdOutlineEmail />} href="mailto:liutk.william@gmail.com" name="liutk.william@gmail.com" />
-                  <SocialButton icon={<FaLinkedin />} href="https://www.linkedin.com/in/liutkwilliam/" name="LinkedIn" />
-                  <SocialButton icon={<FaGithub />} href="https://www.github.com/liutkwilliam/" name="GitHub" />
-                </div>
-              </div>
+        <div className="container mx-auto w-full md:w-[60vw]">
+          <div className="mb-8">
+            <MarkdownContent>{bio}</MarkdownContent>
+          </div>
+          <div className="mb-6">
+            <h4 className="mb-2 mt-6 text-sm font-bold uppercase tracking-widest text-primary">Let's Connect</h4>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+              <SocialButton icon={<FaInstagram />} href="https://www.instagram.com/liutkwilliam" name="Instagram" />
+              <SocialButton icon={<MdOutlineEmail />} href="mailto:liutk.william@gmail.com" name="liutk.william@gmail.com" />
+              <SocialButton icon={<FaLinkedin />} href="https://www.linkedin.com/in/liutkwilliam/" name="LinkedIn" />
+              <SocialButton icon={<FaGithub />} href="https://www.github.com/liutkwilliam/" name="GitHub" />
             </div>
           </div>
         </div>

@@ -95,7 +95,7 @@ function PortfolioEntry({ type = 'portfolio' }) {
 
   return (
     <>
-      <section className="relative flex min-h-[70vh] items-center justify-center overflow-hidden bg-slate-950 text-center text-white">
+      <section className="relative flex min-h-[50vh] items-center justify-center overflow-hidden bg-slate-950 text-center text-white">
         {item.coverImage && (
           <img
             src={item.coverImage}
@@ -121,21 +121,21 @@ function PortfolioEntry({ type = 'portfolio' }) {
         <Link className="mb-8 inline-block font-semibold text-primary hover:text-blue-800" to={backMap[type]}>
           {'<'} Back to {labelMap[type]}
         </Link>
-        <article className="mx-auto max-w-3xl">
+        <article className="mx-auto max-w-4xl">
           <MarkdownContent>{item.content}</MarkdownContent>
         </article>
 
         {item.images.length > 0 && (
-          <section className="mt-14 columns-1 gap-5 sm:columns-2 lg:columns-3">
+          <section className="mt-14 columns-1 gap-5 sm:columns-2">
             {item.images.map((image, index) => (
-              <figure key={`${image.image_path}-${index}`} className="mb-5 break-inside-avoid overflow-hidden rounded-2xl bg-white shadow">
+              <figure key={`${image.image_path}-${index}`} className="mb-5 break-inside-avoid overflow-hidden rounded-2xl bg-white shadow shadow-lg">
                 <img
                   src={image.isExternal ? image.image_path : `${imageBase}${image.image_path}`}
                   alt={image.title || `${item.title} image ${index + 1}`}
                   className="w-full object-cover"
                   loading="lazy"
                 />
-                {image.title && <figcaption className="p-3 text-sm text-slate-600">{image.title}</figcaption>}
+                {image.title && <figcaption className="p-3 font-semibold text-slate-600">{image.title}</figcaption>}
               </figure>
             ))}
           </section>

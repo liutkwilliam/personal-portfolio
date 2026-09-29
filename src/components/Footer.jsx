@@ -15,10 +15,10 @@ function Footer() {
                         <span className="block md:inline-flex py-2">@ {new Date().getFullYear()}, William - Tsz Kin LIU</span>
                     </div>
                     <div className="w-full md:w-auto text-center md:text-right py-2 flex justify-center md:justify-end space-x-4">
-                        <SocialButton href="mailto:liutk.william@gmail.com" icon={<MdOutlineEmail />} ariaLabel="Email William" />
-                        <SocialButton href="https://www.instagram.com/liutk.william/" icon={<FaInstagram />} ariaLabel="William Liu on Instagram" />
-                        <SocialButton href="https://www.linkedin.com/in/liutkwilliam/" icon={<FaLinkedin />} ariaLabel="William Liu on LinkedIn" />
-                        <SocialButton href="https://www.github.io/liutkwilliam/" icon={<FaGithub />} ariaLabel="William Liu on GitHub" />
+                        <SocialButton href="mailto:liutk.william@gmail.com" icon={<MdOutlineEmail />} ariaLabel="Email William" name={"Email"}/>
+                        <SocialButton href="https://www.instagram.com/liutk.william/" icon={<FaInstagram />} ariaLabel="William Liu on Instagram" name={"Instagram"}/>
+                        <SocialButton href="https://www.linkedin.com/in/liutkwilliam/" icon={<FaLinkedin />} ariaLabel="William Liu on LinkedIn" name={"LinkedIn"}/>
+                        <SocialButton href="https://www.github.io/liutkwilliam/" icon={<FaGithub />} ariaLabel="William Liu on GitHub" name={"GitHub"}/>
                     </div>
                 </footer>
             </div>
