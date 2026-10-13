@@ -12,12 +12,11 @@ import {
   updateDoc,
   where,
 } from "firebase/firestore";
-import { getDownloadURL, getStorage, listAll, ref, uploadBytesResumable } from "firebase/storage";
+import { cloudflareStorage } from "../config/cloudflareStorage";
 
 const portfolioCollectionName = "items";
 const portfolioCollection = collection(db, portfolioCollectionName);
-const storage = getStorage();
-const storageImageFolder = "portfolio/images";
+const storageImageFolder = cloudflareStorage.imageFolder;
 const urlPattern = /^(https?:|data:|blob:)/i;
 
 export const categoryOptions = [
@@ -33,13 +32,7 @@ const getDocumentData = (document) => ({
 
 const getStorageUrl = async (value) => {
   if (!value || typeof value !== "string" || urlPattern.test(value)) return value || "";
-
-  try {
-    return await getDownloadURL(ref(storage, value));
-  } catch (error) {
-    console.error("Error resolving Firebase Storage URL:", error);
-    return value;
-  }
+  return cloudflareStorage.getPublicUrl(value);
 };
 
 const resolveImageRecord = async (image) => {
@@ -257,29 +250,23 @@ export const deletePortfolioItem = async (id) => {
 export const loadStorageImages = async () => {
   await waitForAuthenticatedUser();
 
-  const folderRef = ref(storage, storageImageFolder);
-  let result;
-
   try {
-    result = await listAll(folderRef);
+    const paths = await cloudflareStorage.listImages(storageImageFolder);
+    return paths.map((path) => ({
+      id: path,
+      name: getStorageImageName(path),
+      path,
+      url: cloudflareStorage.getPublicUrl(path),
+    }));
   } catch (error) {
-    error.storagePath = folderRef.fullPath;
+    error.storagePath = storageImageFolder;
     throw error;
   }
-
-  return Promise.all(
-    result.items.map(async (itemRef) => ({
-      id: itemRef.fullPath,
-      name: getStorageImageName(itemRef.name),
-      path: itemRef.fullPath,
-      url: await getDownloadURL(itemRef),
-    }))
-  );
 };
 
 export const getStorageErrorMessage = (error) => {
   const debugInfo = {
-    storageBucket: storage.app.options.storageBucket,
+    storageBucket: cloudflareStorage.config.bucketName,
     currentUser: auth.currentUser
       ? {
         uid: auth.currentUser.uid,
@@ -297,38 +284,20 @@ export const getStorageErrorMessage = (error) => {
     .filter(Boolean)
     .join(" | ");
 
-  if (error?.code === "storage/unauthorized") {
-    return `Firebase Storage denied access. ${details}`;
-  }
+  if (error?.code === "storage/unauthorized") return `Cloudflare R2 denied access. ${details}`;
 
   if (error?.message) return details ? `${error.message} ${details}` : error.message;
 
-  return details ? `Firebase Storage could not be accessed. ${details}` : "Firebase Storage could not be accessed. Please try again.";
+  return details ? `Cloudflare R2 could not be accessed. ${details}` : "Cloudflare R2 could not be accessed. Please try again.";
 };
 
 export const uploadPortfolioFile = async (file, index = 0, onProgress) => {
   await waitForAuthenticatedUser();
 
-  const storageRef = ref(storage, `${storageImageFolder}/${Date.now()}_${index}_${sanitizeFileName(file.name)}`);
-  const uploadTask = uploadBytesResumable(storageRef, file);
-
-  return new Promise((resolve, reject) => {
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {
-        const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-        onProgress?.(progress);
-      },
-      (error) => {
-        error.storagePath = storageRef.fullPath;
-        reject(error);
-      },
-      async () => {
-        const downloadUrl = await getDownloadURL(uploadTask.snapshot.ref);
-        resolve(downloadUrl);
-      }
-    );
-  });
+  const storagePath = `${storageImageFolder}/${Date.now()}_${index}_${sanitizeFileName(file.name)}`;
+  const downloadUrl = await cloudflareStorage.uploadFile(file, storagePath);
+  onProgress?.(100);
+  return downloadUrl;
 };
 
 export const uploadPortfolioImages = async (photos, onProgress) => {

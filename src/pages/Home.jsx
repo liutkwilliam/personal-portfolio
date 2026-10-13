@@ -37,7 +37,7 @@ function Home() {
           <div className="absolute container mx-auto px-4 insert-0 z-20 space-y-4">
             <p className="text-2xl font-semibold">{greetings[index]}</p>
             <p className="text-4xl md:text-6xl font-bold text-primary">William Liu</p>
-            <p className="text-xl font-semibold w-full md:w-200 h-15">
+            <p className="text-xl font-semibold w-full md:w-200 h-30">
               {msgs[index2]}
             </p>
             <p className='flex gap-4 items-center text-lg font-semi-bold'><FaMapMarkerAlt />Sydney, Australia</p>
@@ -46,7 +46,7 @@ function Home() {
         </div>
       </div>
       {/* brief about */}
-      <div className={`bg-gray-100 h-[90vh] flex items-center`}>
+      <div className={`bg-gray-100 h-[90vh] flex items-center p-4`}>
         <div className={`w-full md:w-[60vw] container mx-auto space-y-4`}>
           <p className="text-4xl md:text-6xl font-bold text-primary">A bit about me</p>
           <p>

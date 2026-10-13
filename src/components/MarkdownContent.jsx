@@ -1,5 +1,6 @@
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
+import { AdobePDFEmbed } from './AdobePDFEmbed';
 
 function MarkdownContent({ children }) {
   return (
@@ -13,7 +14,15 @@ function MarkdownContent({ children }) {
         p: (props) => <p className="mb-4 leading-7 text-slate-700" {...props} />,
         ul: (props) => <ul className="mb-5 list-disc space-y-2 pl-6 text-slate-700" {...props} />,
         ol: (props) => <ol className="mb-5 list-decimal space-y-2 pl-6 text-slate-700" {...props} />,
-        a: (props) => <a className="font-semibold text-primary hover:text-blue-800" target="_blank" rel="noreferrer" {...props} />,
+        // a: (props) => <a className="font-semibold text-primary hover:text-blue-800" target="_blank" rel="noreferrer" {...props} />,
+        a: ({ href, children, props }) => {
+          // If the link points to a PDF, swap out the anchor tag for the embed code
+          if (href?.toLowerCase().endsWith('.pdf')) {
+            return <AdobePDFEmbed url={href} fileName={String(children)} />;
+          }
+          // Default styling/behavior for all other links
+          return <a href={href} className="font-semibold text-primary hover:text-blue-800" target="_blank" rel="noreferrer" {...props} >{children}</a>;
+        },
         div: ({ ...props }) => {
           return <div {...props} />;
         },

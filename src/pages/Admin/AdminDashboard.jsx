@@ -8,7 +8,6 @@ import {
   getExistingPhotos,
   getPhotoId,
   getStorageErrorMessage,
-  loadStorageImages,
   savePortfolioItem,
   uploadPortfolioFile,
   uploadPortfolioImages,
@@ -42,12 +41,6 @@ function AdminDashboard() {
   const [coverImageUrl, setCoverImageUrl] = useState('');
   const [uploading, setUploading] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [mediaLibrary, setMediaLibrary] = useState({
-    images: [],
-    loading: false,
-    loaded: false,
-    error: '',
-  });
 
   useSubtitle({ title: 'Admin Dashboard', description: 'Manage portfolio entries and images.' });
 
@@ -102,73 +95,12 @@ function AdminDashboard() {
     e.target.value = '';
   };
 
-  const loadMediaLibrary = async () => {
-    if (mediaLibrary.loading || mediaLibrary.loaded) return;
-
-    setMediaLibrary((currentLibrary) => ({
-      ...currentLibrary,
-      loading: true,
-      error: '',
-    }));
-
-    try {
-      const images = await loadStorageImages();
-
-      setMediaLibrary({
-        images,
-        loading: false,
-        loaded: true,
-        error: '',
-      });
-    } catch (error) {
-      console.error('Error loading Firebase Storage images:', error);
-      setMediaLibrary((currentLibrary) => ({
-        ...currentLibrary,
-        loading: false,
-        loaded: true,
-        error: getStorageErrorMessage(error),
-      }));
-    }
-  };
-
-  const addExistingPhoto = (image) => {
-    setDraftPhotos((currentPhotos) => {
-      if (currentPhotos.some((photo) => photo.url === image.url)) {
-        return currentPhotos;
-      }
-
-      return [
-        ...currentPhotos,
-        {
-          id: `storage-${image.path}`,
-          previewUrl: image.url,
-          url: image.url,
-          alt: image.name,
-          description: '',
-        },
-      ];
-    });
-  };
-
   const handlePhotoDescriptionChange = (photoId, description) => {
     setDraftPhotos((currentPhotos) =>
       currentPhotos.map((photo) =>
         photo.id === photoId ? { ...photo, description } : photo
       )
     );
-  };
-
-  const selectExistingCover = (image) => {
-    setCoverPhoto((currentCoverPhoto) => {
-      if (currentCoverPhoto) {
-        URL.revokeObjectURL(currentCoverPhoto.previewUrl);
-      }
-      return null;
-    });
-    setCoverImageUrl(image.url);
-    if (coverInputRef.current) {
-      coverInputRef.current.value = '';
-    }
   };
 
   const movePhoto = (fromIndex, toIndex) => {
@@ -251,12 +183,6 @@ function AdminDashboard() {
   };
 
   const closeFirebaseImages = () => {
-    setMediaLibrary({
-      images: [],
-      loading: false,
-      loaded: false,
-      error: '',
-    });
   };
 
   // state management
@@ -300,6 +226,7 @@ function AdminDashboard() {
 
   // run fetchItems on component mount
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchItems();
   }, [fetchItems]);
 
@@ -338,7 +265,7 @@ function AdminDashboard() {
 
       if (editId) {
         await savePortfolioItem({ id: editId, itemData });
-        setSuccessMessage('Item updated in Firestore.');
+        setSuccessMessage('Item entry updated.');
       } else {
         await savePortfolioItem({ itemData });
         setSuccessMessage('Item created in Firestore.');
@@ -461,11 +388,6 @@ function AdminDashboard() {
                       ))}
                     </div>
                   </div>
-
-                  {/* <div className="mt-1 text-sm text-slate-500">Created At: {item.createdAt?.toDate?.()?.toLocaleString() || 'N/A'}</div> */}
-
-
-
                 </div>
               ))
             )
@@ -541,34 +463,6 @@ function AdminDashboard() {
                 disabled={uploading}
                 className="mt-2 rounded px-3 py-2 cursor-pointer bg-slate-100 shadow-lg disabled:cursor-not-allowed disabled:bg-gray-200"
               />
-              <div className="mt-3">
-                <Button type="button" onClick={loadMediaLibrary} disabled={uploading || mediaLibrary.loading} variant="secondary" size="sm">
-                  {mediaLibrary.loading ? 'Loading Firebase Images...' : 'Select From Existing Firebase Images'}
-                </Button>
-              </div>
-              {mediaLibrary.error && (
-                <p className="mt-2 rounded bg-red-50 px-3 py-2 text-sm text-red-600">{mediaLibrary.error}</p>
-              )}
-              {mediaLibrary.loaded && (
-                <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-6">
-                  {mediaLibrary.images.map((image) => {
-                    const isSelected = coverImageUrl === image.url;
-
-                    return (
-                      <button
-                        key={`cover-${image.path}`}
-                        type="button"
-                        onClick={() => selectExistingCover(image)}
-                        disabled={uploading || isSelected}
-                        className="rounded border border-slate-200 bg-white p-2 text-left shadow-sm transition hover:border-primary disabled:cursor-not-allowed disabled:opacity-60"
-                      >
-                        <img src={image.url} alt={image.name} className="mb-2 aspect-square w-full rounded object-cover" />
-                        <span className="block truncate text-xs text-slate-700">{isSelected ? 'Selected' : image.name}</span>
-                      </button>
-                    );
-                  })}
-                </div>
-              )}
               {(coverPhoto?.previewUrl || coverImageUrl) && (
                 <div className="mt-4 max-w-sm rounded border border-slate-200 bg-white p-3 shadow-sm">
                   <img
@@ -596,31 +490,6 @@ function AdminDashboard() {
                 disabled={uploading}
                 className="mt-2 rounded px-3 py-2 cursor-pointer bg-slate-100 shadow-lg disabled:cursor-not-allowed disabled:bg-gray-200"
               />
-              <div className="mt-3">
-                <Button type="button" onClick={loadMediaLibrary} disabled={uploading || mediaLibrary.loading} variant="secondary" size="sm">
-                  {mediaLibrary.loading ? 'Loading Firebase Images...' : 'Select From Existing Firebase Images'}
-                </Button>
-              </div>
-              {mediaLibrary.loaded && (
-                <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-6">
-                  {mediaLibrary.images.map((image) => {
-                    const isSelected = draftPhotos.some((photo) => photo.url === image.url);
-
-                    return (
-                      <button
-                        key={`image-${image.path}`}
-                        type="button"
-                        onClick={() => addExistingPhoto(image)}
-                        disabled={uploading || isSelected}
-                        className="rounded border border-slate-200 bg-white p-2 text-left shadow-sm transition hover:border-primary disabled:cursor-not-allowed disabled:opacity-60"
-                      >
-                        <img src={image.url} alt={image.name} className="mb-2 aspect-square w-full rounded object-cover" />
-                        <span className="block truncate text-xs text-slate-700">{isSelected ? 'Selected' : image.name}</span>
-                      </button>
-                    );
-                  })}
-                </div>
-              )}
 
               <AdminPhotoList
                 photos={draftPhotos}
