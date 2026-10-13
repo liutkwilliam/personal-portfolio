@@ -21,7 +21,7 @@ function MarkdownContent({ children }) {
             return <AdobePDFEmbed url={href} fileName={String(children)} />;
           }
           // Default styling/behavior for all other links
-          return <a href={href} className="font-semibold text-primary hover:text-blue-800" target="_blank" rel="noreferrer" {...props} >{children}</a>;
+          return <a href={href} className="font-semibold text-primary hover:text-blue-800" target="_blank" rel="noreferrer" {...props} />;
         },
         div: ({ ...props }) => {
           return <div {...props} />;
