@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 
-export const AdobePDFEmbed = ({ url, fileName = "Document.pdf" }) => {
+export const AdobePDFEmbed = ({ url, fileName }) => {
   const containerRef = useRef(null);
 
   useEffect(() => {
