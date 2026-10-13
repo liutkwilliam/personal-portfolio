@@ -34,20 +34,20 @@ function Home() {
             className="absolute inset-0 w-full h-[100vh] object-cover z-0"
           />
           <div className="absolute inset-0 flex items-center justify-center z-10 bg-white opacity-85" />
-          <div className="absolute container mx-auto px-4 insert-0 z-20 space-y-4">
-            <p className="text-2xl font-semibold">{greetings[index]}</p>
-            <p className="text-4xl md:text-6xl font-bold text-primary">William Liu</p>
-            <p className="text-xl font-semibold w-full md:w-200 h-30">
-              {msgs[index2]}
-            </p>
-            <p className='flex gap-4 items-center text-lg font-semi-bold'><FaMapMarkerAlt />Sydney, Australia</p>
-          </div>
+            <div className="absolute container max-w-7xl px-4 sm:px-6 lg:px-8 insert-0 z-20 space-y-4">
+              <p className="text-2xl font-semibold">{greetings[index]}</p>
+              <p className="text-4xl md:text-6xl font-bold text-primary">William Liu</p>
+              <p className="text-xl font-semibold w-full md:w-200 h-30">
+                {msgs[index2]}
+              </p>
+              <p className='flex gap-4 items-center text-lg font-semi-bold'><FaMapMarkerAlt />Sydney, Australia</p>
+            </div>
           <ScrollIndicator />
         </div>
       </div>
       {/* brief about */}
       <div className={`bg-gray-100 h-[90vh] flex items-center p-4`}>
-        <div className={`w-full md:w-[60vw] container mx-auto space-y-4`}>
+        <div className={`w-full md:w-[60vw] mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-4`}>
           <p className="text-4xl md:text-6xl font-bold text-primary">A bit about me</p>
           <p>
             I am multi-disciplinary developer. I specialize in web application development, WCAG accessibility, and digital asset systems - combining code, design, and data integrity.

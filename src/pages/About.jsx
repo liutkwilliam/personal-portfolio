@@ -43,7 +43,7 @@ Let’s connect and build something seamless!
   return (
     <>
       <div className="flex items-center bg-white">
-        <div className="container mx-auto w-full md:w-[60vw]">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full md:w-[60vw]">
           <div className="mb-8">
             <MarkdownContent>{bio}</MarkdownContent>
           </div>

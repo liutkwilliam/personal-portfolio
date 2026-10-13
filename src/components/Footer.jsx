@@ -7,7 +7,7 @@ function Footer() {
     return (
         <>
             <div className="w-full px-4 py-2 bg-gray-100">
-                <footer className="container mx-auto flex flex-wrap justify-between items-center">
+                <footer className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-wrap justify-between items-center">
                     <div className="w-full md:w-auto text-center md:text-left flex flex-col md:flex-row items-center">
                         <a href="/" className="no-underline md:pr-4">
                             <Logo />

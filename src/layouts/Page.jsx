@@ -7,7 +7,7 @@ function Page() {
   return (
     <>
       <NavBar />
-      <div className="container mx-auto bg-page min-h-[90vh]">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 bg-page min-h-[90vh]">
         <Outlet />
       </div>
       <Footer />

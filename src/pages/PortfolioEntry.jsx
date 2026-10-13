@@ -100,14 +100,14 @@ function PortfolioEntry({ type = 'portfolio' }) {
           <img
             src={item.coverImage}
             alt={item.title}
-            className="absolute inset-0 h-full w-full object-cover opacity-45"
+            className="absolute inset-0 h-full w-full object-cover opacity-30"
           />
         )}
-        <div className="relative z-10 mx-auto max-w-4xl px-4 py-24">
-          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.35em] text-primary">
+        <div className="relative z-10 mx-auto max-w-5xl px-4 py-24">
+          <p className="mb-4 font-semibold uppercase tracking-[0.35em] text-primary">
             {labelMap[type]}
           </p>
-          <h1 className="text-4xl font-black tracking-tight md:text-6xl">{item.title}</h1>
+          <h1 className="text-4xl text-4xl md:text-6xl font-bold">{item.title}</h1>
           {item.date && <p className="mt-4 text-lg">{item.date.getFullYear()}</p>}
           {item.tags?.length > 0 && (
             <p className="mt-4 text-sm font-semibold uppercase tracking-[0.2em]">
@@ -118,27 +118,32 @@ function PortfolioEntry({ type = 'portfolio' }) {
       </section>
 
       <main className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-        <Link className="mb-8 inline-block font-semibold text-primary hover:text-blue-800" to={backMap[type]}>
+        {/* <Link className="mb-8 inline-block font-semibold text-primary hover:text-blue-800" to={backMap[type]}>
           {'<'} Back to {labelMap[type]}
-        </Link>
-        <article className="mx-auto max-w-4xl">
+        </Link> */}
+        <article className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <p className='mb-4 text-2xl font-bold text-primary'>Project Overview</p>
           <MarkdownContent>{item.content}</MarkdownContent>
         </article>
 
         {item.images.length > 0 && (
-          <section className="mt-14 columns-1 gap-5 sm:columns-2">
-            {item.images.map((image, index) => (
-              <figure key={`${image.image_path}-${index}`} className="mb-5 break-inside-avoid overflow-hidden rounded-2xl bg-white shadow shadow-lg">
-                <img
-                  src={image.isExternal ? image.image_path : `${imageBase}${image.image_path}`}
-                  alt={image.title || `${item.title} image ${index + 1}`}
-                  className="w-full object-cover"
-                  loading="lazy"
-                />
-                {image.title && <figcaption className="p-3 font-semibold text-slate-600">{image.title}</figcaption>}
-              </figure>
-            ))}
-          </section>
+          <div className="mt-14 px-4 sm:px-6 lg:px-8 ">
+            <p className='mb-4 text-2xl font-bold text-primary'>Media Gallery</p>
+            <section className="columns-1 gap-5 sm:columns-2">
+
+              {item.images.map((image, index) => (
+                <figure key={`${image.image_path}-${index}`} className="mb-5 break-inside-avoid overflow-hidden rounded-2xl bg-white shadow shadow-lg">
+                  <img
+                    src={image.isExternal ? image.image_path : `${imageBase}${image.image_path}`}
+                    alt={image.title || `${item.title} image ${index + 1}`}
+                    className="w-full object-cover"
+                    loading="lazy"
+                  />
+                  {image.title && <figcaption className="p-3 font-semibold text-slate-600">{image.title}</figcaption>}
+                </figure>
+              ))}
+            </section>
+          </div>
         )}
       </main>
     </>
