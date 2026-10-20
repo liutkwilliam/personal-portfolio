@@ -12,7 +12,6 @@ import AdminLayout from './layouts/AdminLayout';
 import AdminDashboard from './pages/Admin/AdminDashboard';
 import AdminLogin from './pages/Admin/AdminLogin';
 import RequireAdminAuth from './components/RequireAdminAuth';
-import SideProjects from './pages/SideProjects';
 
 function App() {
   return (
@@ -28,8 +27,6 @@ function App() {
           {/* <Route path="/blog" element={<PortfolioPage type="posts" />} /> */}
           <Route path="/portfolio" element={<PortfolioPage type="portfolio" />} />
           <Route path="/developer" element={<PortfolioPage type="developer" />} />
-          {/* <Route path="/gallery" element={<Navigate to="/photography" replace />} /> */}
-          <Route path="sideprojects" element={<SideProjects />} />
         </Route>
         {/* portfolio layout */}
         <Route element={<Portfolio />}>

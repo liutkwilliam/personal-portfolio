@@ -13,7 +13,7 @@ export const AdobePDFEmbed = ({ url, fileName }) => {
     const loadAdobeViewer = () => {
       if (window.AdobeDC) {
         const adobeDCView = new window.AdobeDC.View({
-          clientId: import.meta.env.ADOBE_PDF_EMBED_API_KEY, // ⚠️ Replace with your Client ID
+          clientId: import.meta.env.VITE_ADOBE_PDF_EMBED_API_KEY,
           divId: viewId,
         });
         

@@ -22,7 +22,6 @@ const urlPattern = /^(https?:|data:|blob:)/i;
 export const categoryOptions = [
   { label: "Design", value: "Design", path: "/portfolio" },
   { label: "Developer", value: "Developer", path: "/developer" },
-  { label: "Photography", value: "Photography", path: "/photography" },
 ];
 
 const getDocumentData = (document) => ({
