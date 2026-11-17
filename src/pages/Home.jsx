@@ -1,10 +1,18 @@
+import { useRef } from 'react';
 import CoverImage from '/images/background.png'
 import Button from '../components/Button'
 import { FaMapMarkerAlt } from "react-icons/fa";
 import FeaturedProject from '../components/FeaturedProject';
 
 function Home() {
+  const featuredRef = useRef(null);
 
+  const scrollToFeatured = () => {
+    featuredRef.current?.scrollIntoView({
+      behavior: 'smooth', // Enables smooth scrolling
+      block: 'start'      // Aligns the top of the element to the top of the viewport
+    });
+  };
   return (
     <>
       {/* cover */}
@@ -26,8 +34,8 @@ function Home() {
             <p className="mt-2 text-md font-semibold sm:text-xl">
               Bridging technical engineering and visual design to build <span className="text-primary font-bold">responsive, accessible, and high-impact digital experiences</span>.
             </p>
-            <p className="mt-4 flex justify-center items-center gap-3 text-lg font-semibold"><FaMapMarkerAlt className='text-red-500'/>Sydney, Australia</p>
-            <Button size='lg' className="w-full sm:w-2xl mt-8" href={"/developer"} content={"View Featured Project"} />
+            <p className="mt-4 flex justify-center items-center gap-3 text-lg font-semibold"><FaMapMarkerAlt className='text-red-500' />Sydney, Australia</p>
+            <Button size='lg' className="w-full sm:w-2xl mt-8" onClick={scrollToFeatured} content={"View Featured Project"} />
           </div>
         </div>
       </section>
@@ -51,7 +59,9 @@ function Home() {
 
         </div>
       </section>
-      <section className="flex items-center bg-gray-100 px-4 py-16 sm:px-6 sm:py-20 md:min-h-[90vh] md:px-8 md:py-24">
+      <section className="flex items-center bg-gray-100 px-4 py-16 sm:px-6 sm:py-20 md:min-h-[90vh] md:px-8 md:py-24"
+        ref={featuredRef}
+        id="featured-project">
         <div className="mx-auto w-full max-w-7xl space-y-6 md:w-3/5 md:space-y-8">
           <p className="text-4xl font-bold text-primary sm:text-5xl md:text-6xl">Featured Project</p>
           <FeaturedProject />
