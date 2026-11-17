@@ -1,26 +1,9 @@
-import { useEffect, useState } from 'react'
-import CoverImage from '/images/portfolio-cover.jpg'
+import CoverImage from '/images/background.png'
 import Button from '../components/Button'
 import { FaMapMarkerAlt } from "react-icons/fa";
-import ScrollIndicator from '../components/ScrollIndicator';
-import VerticalProjectSlideshow from '../components/VerticalProjectSlideShow';
-
-const greetings = ["G'Day, it's", "Hello, I am", "哈囉, 我係", "你好, 我是"]
-const msgs = ["Frontend Engineer | Graphic Designer | Photographer", "Bridging technical engineering and visual design to build responsive, accessible, and high-impact digital experiences."]
+import FeaturedProject from '../components/FeaturedProject';
 
 function Home() {
-  const [index, setIndex] = useState(0);
-  const [index2, setIndex2] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((prevIndex) => (prevIndex + 1) % greetings.length)
-      setIndex2((prevIndex) => (prevIndex + 1) % msgs.length)
-    }, 2000)
-
-    return () => clearInterval(interval)
-
-  })
 
   return (
     <>
@@ -34,19 +17,18 @@ function Home() {
           />
           <div className="absolute inset-0 bg-white/85" />
         </div>
-        <div className="container relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-12">
-            <div>
-              <p className="text-2xl font-semibold">{greetings[index]}</p>
-              <p className="text-4xl font-bold text-primary sm:text-5xl md:text-6xl">William Liu</p>
-              <p className="mt-2 min-h-24 text-lg font-semibold sm:text-xl md:min-h-28">
-                {msgs[index2]}
-              </p>
-              <p className="mt-4 flex items-center gap-3 text-lg font-semibold"><FaMapMarkerAlt />Sydney, Australia</p>
-            </div>
-            <div className="w-full min-w-0">
-              <VerticalProjectSlideshow />
-            </div>
-          <ScrollIndicator />
+        <div className="container relative z-10 text-center w-full">
+          <div>
+            <p className="text-4xl font-bold text-primary sm:text-5xl md:text-6xl">William Liu</p>
+            <p className="mt-2 text-lg font-semibold sm:text-xl">
+              Frontend Developer | Creative Technologist | Graphic Designer | Photographer
+            </p>
+            <p className="mt-2 text-md font-semibold sm:text-xl">
+              Bridging technical engineering and visual design to build <span className="text-primary font-bold">responsive, accessible, and high-impact digital experiences</span>.
+            </p>
+            <p className="mt-4 flex justify-center items-center gap-3 text-lg font-semibold"><FaMapMarkerAlt className='text-red-500'/>Sydney, Australia</p>
+            <Button size='lg' className="w-full sm:w-2xl mt-8" href={"/developer"} content={"View Featured Project"} />
+          </div>
         </div>
       </section>
       {/* brief about */}
@@ -67,6 +49,12 @@ function Home() {
             <Button size="lg" className="w-full sm:w-auto" variant='secondary' href={"/about"} content={"About Me"} />
           </div>
 
+        </div>
+      </section>
+      <section className="flex items-center bg-gray-100 px-4 py-16 sm:px-6 sm:py-20 md:min-h-[90vh] md:px-8 md:py-24">
+        <div className="mx-auto w-full max-w-7xl space-y-6 md:w-3/5 md:space-y-8">
+          <p className="text-4xl font-bold text-primary sm:text-5xl md:text-6xl">Featured Project</p>
+          <FeaturedProject />
         </div>
       </section>
     </>

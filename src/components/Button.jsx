@@ -10,8 +10,8 @@ const variantClasses = {
 
 const sizeClasses = {
     sm: 'px-3 py-1 text-sm rounded-full',
-    md: 'px-4 py-2 text-sm rounded-full',
-    lg: 'px-6 py-3 font-semibold rounded-full',
+    md: 'px-4 py-2 text-md rounded-full',
+    lg: 'px-6 py-3 text-lg font-semibold rounded-full',
 };
 
 const getButtonClassName = ({ variant = 'primary', size = 'md', className = '' } = {}) =>
